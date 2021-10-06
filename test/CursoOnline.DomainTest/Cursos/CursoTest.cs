@@ -1,3 +1,4 @@
+using Bogus;
 using CursoOnline.DomainTest._Builders;
 using CursoOnline.DomainTest._Util;
 using ExpectedObjects;
@@ -27,12 +28,13 @@ namespace CursoOnline.DomainTest
         {
             _output = output;
             _output.WriteLine("Contrutor sendo executado");
+            var faker = new Faker();
 
-            _nome = "JavaScript Avançado";
-            _descricao = "Descricao";
-            _cargaHoraria = (double)120;
+            _nome = faker.Random.Word();
+            _descricao = faker.Lorem.Paragraph();
+            _cargaHoraria = faker.Random.Double(50, 1000);
             _publicoAlvo = PublicoAlvo.Estudante;
-            _valor = 500;
+            _valor = faker.Random.Double(100, 1000);
         }
 
         public void Dispose()
